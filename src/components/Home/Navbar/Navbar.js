@@ -8,6 +8,7 @@ const Navbar = () => {
   const from = location.state?.from?.pathname || "/";
 
   const handleLogoutBtn = (event) => {
+    localStorage.removeItem("user");
     navigate(from, { replace: true });
   };
   return (
@@ -41,13 +42,11 @@ const Navbar = () => {
               class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a href="/add-product">Add product</a>
+                <a href="/home">Home</a>
               </li>
+
               <li tabindex="0">
-                <a class="justify-between">My Products</a>
-              </li>
-              <li>
-                <a>About</a>
+                <a href={`/my-products`}>My products</a>
               </li>
             </ul>
           </div>
@@ -60,24 +59,41 @@ const Navbar = () => {
       </div>
 
       {location.pathname != "/" ? (
-        <div className="w-full flex justify-between">
+        <div className="w-full">
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
               <li>
+                <a href="/home">Home</a>
+              </li>
+              {/* <li>
                 <a href="/add-product">Add product</a>
-              </li>
-              <li tabindex="0">
+              </li> */}
+              <li
+                onClick={() => {
+                  if (localStorage.getItem("user") != null) {
+                    navigate("/my-products");
+                  } else {
+                    navigate(`/`);
+                  }
+                }}
+                tabindex="0"
+              >
                 <a>My products</a>
-              </li>
-              <li>
-                <a> Abou</a>
               </li>
             </ul>
           </div>
-          <div class=" ">
-            <a onClick={handleLogoutBtn} class="btn hover:bg-red-700">
-              LOGOUT
-            </a>
+          <div class=" grid ml-auto mr-5">
+            {!localStorage.getItem("user") ? (
+              <a href="/" class="btn hover:bg-red-700">
+                Sign In
+              </a>
+            ) : (
+              <a onClick={handleLogoutBtn} class="btn hover:bg-red-700">
+                LOGOUT
+              </a>
+            )}
+            <small>{localStorage.getItem("user")}</small>
+            <small>User ID: {localStorage.getItem("currentUserID")}</small>
           </div>
         </div>
       ) : (

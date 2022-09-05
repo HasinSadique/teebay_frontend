@@ -7,7 +7,14 @@ import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
 import AddProduct from "./components/AddProduct/AddProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
+import ProductDetails from "./components/Home/ProductCard/ProductDetails/ProductDetails";
+import MyProducts from "./components/MyProducts/MyProducts";
+import { useState } from "react";
+
 function App() {
+  // const [currentUser, setCurrentUser] = useState("");
+  // console.log("hello > ", currentUser);
+
   return (
     <div className="App">
       <Navbar></Navbar>
@@ -17,7 +24,16 @@ function App() {
         <Route path="/signup" element={<Signup></Signup>}></Route>
         <Route path="/add-product" element={<AddProduct></AddProduct>}></Route>
         <Route
-          path="/edit-details"
+          path="/add-product/:pid"
+          element={<AddProduct></AddProduct>}
+        ></Route>
+        <Route path="/my-products" element={<MyProducts></MyProducts>}></Route>
+        <Route
+          path="/product-details/:pid"
+          element={<ProductDetails></ProductDetails>}
+        ></Route>
+        <Route
+          path="/edit-details/:pid"
           element={<EditProduct></EditProduct>}
         ></Route>
       </Routes>

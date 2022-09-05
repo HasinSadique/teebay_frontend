@@ -1,5 +1,6 @@
 import Multiselect from "multiselect-react-dropdown";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router";
 
 const AddProduct = () => {
   const [title, setTitle] = useState("");
@@ -7,6 +8,12 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [rent, setRent] = useState("");
+
+  const [rentOption, setRentOption] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || `/my-products`;
 
   const handleTitleBlur = (event) => {
     setTitle(event.target.value);
@@ -25,22 +32,42 @@ const AddProduct = () => {
   const handleSelect = (e) => {
     // console.log(e.toString());
     setCategories(e);
-    console.log("the categories >>>> ", categories);
+    // console.log("the categories >>>> ", categories);
   };
 
   const handleAddProductBtn = (e) => {
     e.preventDefault();
-    console.log(
-      title,
-      "\n",
-      categories,
-      "\n",
-      description,
-      "\n",
-      price,
-      "\n",
-      rent
-    );
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        UID: localStorage.getItem("currentUserID"),
+        Title: title,
+        Categories: categories,
+        Description: description,
+        Price: price,
+        Rent: rent,
+        RentOption: rentOption,
+      }),
+    };
+    console.log("rent option: ", rentOption);
+
+    fetch("http://localhost:3302/add-product", requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success == true) {
+          alert("Product Added");
+          navigate(from, { replace: true });
+        } else {
+          alert("Kuch to Garbar hain.");
+        }
+      });
+  };
+
+  const handleRentOptionChange = (event) => {
+    event.preventDefault();
+    setRentOption(event.target.value);
   };
 
   return (
@@ -102,16 +129,29 @@ const AddProduct = () => {
                 class="input input-bordered w-full max-w-xs"
               />
             </div>
-            <div class="form-control w-full max-w-xs">
-              <label class="label ml-5">
+            <div class=" form-control ">
+              <label class="label ml-10">
                 <span class="label-text">Rent</span>
               </label>
-              <input
-                onBlur={handleRentBlur}
-                type="text"
-                placeholder="Type here"
-                class="input input-bordered w-1/3 ml-5"
-              />
+              <div className="flex justify-between ">
+                <input
+                  onBlur={handleRentBlur}
+                  type="text"
+                  class="input input-bordered w-1/3 ml-10"
+                />
+                <select
+                  onChange={handleRentOptionChange}
+                  class="select select-bordered"
+                >
+                  <option disabled selected>
+                    Rent Type
+                  </option>
+                  <option>Per hour</option>
+                  <option>Per day</option>
+                  <option>Per month</option>
+                  <option>Per Year</option>
+                </select>
+              </div>
             </div>
           </div>
           <div className="flex justify-end">
@@ -122,40 +162,6 @@ const AddProduct = () => {
               Add Product{" "}
             </button>
           </div>
-          {/* <div class="dropdown flex justify-start">
-            <label
-              tabindex="0"
-              class=" flex justify-between border-2 border-gray-400 px-7 py-1"
-            >
-              Select a category
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6 ml-3"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                />
-              </svg>
-            </label>
-            <h1>[HINT: Can y]</h1>
-            <ul
-              tabindex="0"
-              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Item 2</a>
-              </li>
-            </ul>
-          </div> */}
         </div>
       </form>
     </div>

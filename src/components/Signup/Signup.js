@@ -16,6 +16,7 @@ const Signup = () => {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
+  const [response, setResponse] = useState("");
   //   Eye Icon passwords
   const [showingPass, setShowingPass] = useState(false);
   const [showingConfirmPass, setShowingConfirmPass] = useState(false);
@@ -28,7 +29,9 @@ const Signup = () => {
     setLastName(event.target.value);
   };
   const handleAddressBlur = (event) => {
-    setEmail(event.target.value);
+    // setAddress(event.target.value);
+    // console.log("Address: >> ", );
+    setAddress(event.target.value);
   };
   const handleEmailBlur = (event) => {
     setEmail(event.target.value);
@@ -47,8 +50,29 @@ const Signup = () => {
     event.preventDefault();
     if (pass == confirmPass && pass.length != 0 && confirmPass.length != 0) {
       // Save to DB
-      // Change UI to signin page
-      navigate(from, { replace: true });
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: FirstName,
+          lastName: lastName,
+          address: address,
+          email: email,
+          phoneNumber: phoneNumber,
+          password: pass,
+        }),
+      };
+
+      fetch("http://localhost:3302/signup", requestOptions)
+        .then((res) => res.json())
+        .then((data) => setResponse(data));
+      if (response.success == true) {
+        alert("User Signup completed");
+        // Change UI to signin page
+        navigate(from, { replace: true });
+      } else {
+        alert("Kuch to Garbar hain.", response);
+      }
     } else {
       alert("Please enter the details correctly.");
     }

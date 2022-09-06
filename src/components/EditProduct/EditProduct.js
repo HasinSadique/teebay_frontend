@@ -7,24 +7,44 @@ const EditProduct = () => {
   const { pid } = useParams();
   const [details, setDetails] = useState({});
 
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [rent, setRent] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [rent, setRent] = useState("");
+  const [rentOption, setRentOption] = useState("");
+
+  const handleTitleBlur = (event) => {
+    event.preventDefault();
+    setTitle(event.target.value);
+  };
+  // const handleCategoriesBlur = (event) => {
+  //   event.preventDefault();
+  //   setTitle(event.target.value);
+  // };
+  const handleDescriptionBlur = (event) => {
+    event.preventDefault();
+    setDescription(event.target.value);
+  };
+  const handlePriceBlur = (event) => {
+    event.preventDefault();
+    setPrice(event.target.value);
+  };
+  const handleRentBlur = (event) => {
+    event.preventDefault();
+    setRent(event.target.value);
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || `/my-products`;
 
-  const [response, setResponse] = useState({});
-
   useEffect(() => {
     fetch(`http://localhost:3302/get-product/${pid}`)
       .then((res) => res.json())
-      .then((data) => setDetails(data[0]));
+      .then((data) => {
+        setDetails(data[0]);
+      });
   }, []);
-
-  // setTitle(details?.Title);
-  // console.log(details?.Categories?.split(","));
 
   const [categories, setCategories] = useState([]);
 
@@ -33,9 +53,60 @@ const EditProduct = () => {
     console.log("the categories >>>> ", categories);
   };
 
-  // const handleEditProductDetailsBtn = (e) => {
-  //   console.log("Title: ", title, "\nPrice: ", price);
-  // };
+  const handleEditProductDetailsBtn = (e) => {
+    e.preventDefault();
+    let newDetails = {
+      PID: details.PID,
+      Categories: categories,
+      Title: title,
+      Description: description,
+      Price: price,
+      Rent: rent,
+      Rent_Option: rentOption,
+    };
+    if (newDetails.Categories.length == 0) {
+      newDetails.Categories = details.Categories;
+    }
+    if (newDetails.Title.length == 0) {
+      newDetails.Title = details.Title;
+    }
+    if (newDetails.Description.length == 0) {
+      newDetails.Description = details.Description;
+    }
+    if (newDetails.Price.length == 0) {
+      newDetails.Price = details.Price;
+    }
+    if (newDetails.Rent.length == 0) {
+      newDetails.Rent = details.Rent;
+    }
+    if (newDetails.Rent_Option.length == 0) {
+      newDetails.Rent_Option = details.Rent_Option;
+    }
+
+    // console.log(
+    //   "Prev Details: >>> \n",
+    //   details,
+    //   "/n/n/n New Details: >>> \n",
+    //   newDetails
+    // );
+
+    const requestOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newDetails),
+    };
+
+    fetch(`http://localhost:3302/edit-product`, requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success == true) {
+          alert(`Message: ${data.msg}`);
+          navigate("/my-products");
+        } else {
+          alert(`Message: ${data.msg}`);
+        }
+      });
+  };
 
   const deleteProduct = (event) => {
     event.preventDefault();
@@ -67,9 +138,15 @@ const EditProduct = () => {
     //   alert("Kuch to Garbar hain.", response);
     // }
   };
+
+  const handleRentOptionChange = (event) => {
+    event.preventDefault();
+    setRentOption(event.target.value);
+  };
+
   return (
     <div>
-      <div className="p-10">
+      <div className="lg:p-10 py-10">
         <h1 className="mb-5 text-xl font-bold"> Edit details </h1>
         <form className="w-3/4 mx-auto">
           <div class="form-control w-full ">
@@ -77,9 +154,11 @@ const EditProduct = () => {
               <span class="label-text"> Title </span>
             </label>
             <input
-              value={details?.Title}
+              defaultValue={details.Title}
+              onBlur={handleTitleBlur}
+              // placeholder={}
               type="text"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full placeholder-black"
             />
             {/* category */}
             <label class="label mt-8">
@@ -108,35 +187,73 @@ const EditProduct = () => {
               <label class="label">
                 <span class="label-text mt-8"> Description </span>
               </label>
+              {/* <input type="text" /> */}
               <textarea
-                value={details?.Description}
+                onBlur={handleDescriptionBlur}
+                defaultValue={details.Description}
                 class="textarea textarea-bordered h-40"
               >
-                {" "}
+                {/* {description} */}
               </textarea>
             </div>
-            <div className="flex mt-8">
-              <div class="form-control w-full max-w-xs">
+            <div className="grid lg:grid-cols-2 lg:gap-5 lg:my-8 my-5">
+              <div class="form-control w-full">
                 <label class="label">
                   <span class="label-text"> Price </span>
                 </label>
                 <input
-                  value={details?.Price}
+                  onBlur={handlePriceBlur}
+                  defaultValue={details?.Price}
                   type="text"
-                  placeholder="Type here"
-                  class="input input-bordered w-full max-w-xs"
+                  class="input input-bordered w-full"
                 />
               </div>
-              <div class="form-control w-full max-w-xs">
-                <label class="label ml-5">
+              <div class="form-control w-full">
+                <label class="label">
                   <span class="label-text"> Rent </span>
                 </label>
-                <input
-                  value={details?.Rent}
-                  type="text"
-                  placeholder="Type here"
-                  class="input input-bordered w-1/3 ml-5"
-                />
+                <div className="grid grid-cols-2 gap-5 ">
+                  <input
+                    onBlur={handleRentBlur}
+                    defaultValue={details?.Rent}
+                    type="text"
+                    class="input input-bordered"
+                  />
+                  <select
+                    onChange={handleRentOptionChange}
+                    class="select select-bordered"
+                  >
+                    <option disabled value="Rent Type">
+                      Rent Type
+                    </option>
+                    <option
+                      selected={
+                        details.Rent_Option == "Per hour" ? true : false
+                      }
+                    >
+                      Per hour
+                    </option>
+                    <option
+                      selected={details.Rent_Option == "Per day" ? true : false}
+                    >
+                      Per day
+                    </option>
+                    <option
+                      selected={
+                        details.Rent_Option == "Per month" ? true : false
+                      }
+                    >
+                      Per month
+                    </option>
+                    <option
+                      selected={
+                        details.Rent_Option == "Per Year" ? true : false
+                      }
+                    >
+                      Per Year
+                    </option>
+                  </select>
+                </div>
               </div>
             </div>
             <div className="flex  justify-end mt-8">
@@ -159,7 +276,7 @@ const EditProduct = () => {
                 </svg>
               </label>
               <button
-                // onClick={handleEditProductDetailsBtn}
+                onClick={handleEditProductDetailsBtn}
                 className="btn bg-red-700 hover:bg-red-600  "
               >
                 Edit Details

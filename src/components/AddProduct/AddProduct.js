@@ -71,7 +71,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="lg:p-10 py-10">
       <h1 className="mb-5 text-xl font-bold">Create a new Product</h1>
       <form className="w-3/4 mx-auto">
         <div class="form-control w-full ">
@@ -117,27 +117,26 @@ const AddProduct = () => {
             ></textarea>
           </div>
 
-          <div className="flex mt-8">
-            <div class="form-control w-full max-w-xs">
+          <div className="grid lg:grid-cols-2 lg:gap-5 lg:my-8 my-5">
+            <div class="form-control w-full">
               <label class="label">
                 <span class="label-text">Price</span>
               </label>
               <input
                 onBlur={handlePriceBlur}
                 type="text"
-                placeholder="Type here"
-                class="input input-bordered w-full max-w-xs"
+                class="input input-bordered w-full"
               />
             </div>
-            <div class=" form-control ">
-              <label class="label ml-10">
+            <div class="form-control w-full">
+              <label class="label">
                 <span class="label-text">Rent</span>
               </label>
-              <div className="flex justify-between ">
+              <div className="grid grid-cols-2 gap-5 ">
                 <input
                   onBlur={handleRentBlur}
                   type="text"
-                  class="input input-bordered w-1/3 ml-10"
+                  class="input input-bordered"
                 />
                 <select
                   onChange={handleRentOptionChange}

@@ -1,15 +1,15 @@
 # TeeBay
 A product renting/buying platform. Here users can add their products/items for sell or for rent and others can buy or lend those products using this application.
 
-This application's frontend is designed using ReactJS, tailwind CSS, Daisy UI, react forms and the backend is created using NodeJS, ExpressJs. Connected with PostgreSQL Database.
+This application's frontend is designed using [ReactJS](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Daisy UI](https://daisyui.com/), [React Forms](https://reactjs.org/docs/forms.html) and the backend is created using [NodeJS](https://nodejs.dev/en/), [ExpressJs](https://expressjs.com/). Connected with [postgresql](https://www.postgresql.org/) Database.
 
 To start using this application in localhost follow the steps:
 
-1. Download the Frontend and Backend Repository and kepp in seperate folders.
+1. Download the [Frontend](https://github.com/HasinSadique/teebay_frontend) and [Backend](https://github.com/HasinSadique/teeBay_Backend) Repository and keep in seperate folders.
 2. Open two different terminals for both frontend and backend. 
 3. Change folder directories to specific folders of both frontend and backend.
 4. For frontend terminal run "npm start" command and for Backend run "nodemon" command.
-5. Open pgAdmin 4 for postgresql DB
+5. Open pgAdmin 4 for [postgresql](https://www.postgresql.org/) DB
 
 
 Below are few screen shots of the Web application.

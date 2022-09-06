@@ -42,9 +42,9 @@ const ProductCard = (props) => {
       {!BuyingID ? (
         <div class=" hover:scale-105 ease-in-out duration-300 mx-auto my-10 card lg:w-1/2 w-3/4 bg-base-100 shadow-2xl">
           <div class="card-body ">
-            <div className="flex justify-between items-center">
-              <h2 class="card-title text-left ">{Title}</h2>
-              <small className="text-gray-500">Product ID: {PID}</small>
+            <div className="flex justify-between items-center ">
+              <h2 class=" card-title text-left">{Title}</h2>
+              <small className="text-gray-500 ml-5">PID: {PID}</small>
             </div>
             <div className="grid grid-cols-1 text-left">
               <small>Categories: {Categories}</small>

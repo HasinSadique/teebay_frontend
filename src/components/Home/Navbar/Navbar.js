@@ -9,6 +9,7 @@ const Navbar = () => {
 
   const handleLogoutBtn = (event) => {
     localStorage.removeItem("user");
+    localStorage.removeItem("currentUserID");
     navigate(from, { replace: true });
   };
   return (
@@ -53,7 +54,10 @@ const Navbar = () => {
         ) : (
           <></>
         )}
-        <a class="btn btn-ghost normal-case text-3xl font-bold text-red-600">
+        <a
+          href="/home"
+          class="btn btn-ghost normal-case text-3xl font-bold text-red-600"
+        >
           teeBay
         </a>
       </div>
@@ -93,7 +97,11 @@ const Navbar = () => {
               </a>
             )}
             <small>{localStorage.getItem("user")}</small>
-            <small>User ID: {localStorage.getItem("currentUserID")}</small>
+            {localStorage.getItem("currentUserID") ? (
+              <small>User ID: {localStorage.getItem("currentUserID")}</small>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ) : (

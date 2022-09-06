@@ -90,8 +90,8 @@ const ProductDetails = () => {
 
   return (
     <div>
-      {/* <h1 className="text-2xl font-bold font-mono mt-10">Product Details</h1> */}
-      <div className="p-5 mt-16 border w-3/4 mx-auto text-left grid grid-cols-1">
+      <h1 className="text-2xl font-bold font-mono mt-10">Product Details</h1>
+      <div className="p-10 mt-10 rounded-xl shadow-2xl border-2 w-3/4 mx-auto text-left grid grid-cols-1">
         <div className="flex justify-between items-center mb-3">
           <h1 className="card-title text-2xl mb-3">{details.Title}</h1>
           <small>Product ID: {details.PID}</small>
@@ -109,7 +109,7 @@ const ProductDetails = () => {
         </small>
         <p class="mt-5 text-justify">{details.Description}</p>
         {details.Rent_Status ? (
-          <h1 className=" text-3xl ml-auto px-5 py-1 rounded-xl border border-5 border-green-600 text-green-600">
+          <h1 className="mt-5 text-3xl ml-auto px-5 py-1 rounded-xl border border-5 border-green-600 text-green-600">
             Rented
           </h1>
         ) : (

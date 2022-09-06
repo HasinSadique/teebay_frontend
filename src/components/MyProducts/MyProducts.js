@@ -56,14 +56,17 @@ const MyProducts = () => {
         <h1 className="bg-red-700 text-2xl text-white font-bold">
           My added products: ({myAddedProducts.length})
         </h1>
-
-        <div>
-          {myAddedProducts.map((product) => (
-            <div>
-              <ProductCard key={product.PID} props={product}></ProductCard>
-            </div>
-          ))}
-        </div>
+        {myAddedProducts.length == 0 ? (
+          <h1 className="mt-5">You did not add any new products.</h1>
+        ) : (
+          <div>
+            {myAddedProducts.map((product) => (
+              <div>
+                <ProductCard key={product.PID} props={product}></ProductCard>
+              </div>
+            ))}
+          </div>
+        )}
         <a className="btn normal-case my-10" href="/add-product">
           Add a product
         </a>
@@ -74,11 +77,15 @@ const MyProducts = () => {
         <h1 className="bg-red-700 text-2xl text-white font-bold">
           My Sold products: ({mySoldProducts.length})
         </h1>
-        <div className="p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-          {mySoldProducts.map((product) => (
-            <ProductCard key={product.BuyingID} props={product}></ProductCard>
-          ))}
-        </div>
+        {mySoldProducts.length == 0 ? (
+          <h1 className="my-16">You did not sell any products.</h1>
+        ) : (
+          <div className="p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+            {mySoldProducts.map((product) => (
+              <ProductCard key={product.BuyingID} props={product}></ProductCard>
+            ))}
+          </div>
+        )}
       </div>
 
       {/*For Bought Products  */}
@@ -86,11 +93,15 @@ const MyProducts = () => {
         <h1 className="bg-red-700 text-2xl text-white font-bold">
           My bought products: ({myBoughtProducts.length})
         </h1>
-        <div className="p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-5">
-          {myBoughtProducts.map((product) => (
-            <ProductCard key={product.BuyingID} props={product}></ProductCard>
-          ))}
-        </div>
+        {myBoughtProducts.length == 0 ? (
+          <h1 className="my-16">You did not buy any products.</h1>
+        ) : (
+          <div className="p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-5">
+            {myBoughtProducts.map((product) => (
+              <ProductCard key={product.BuyingID} props={product}></ProductCard>
+            ))}
+          </div>
+        )}
       </div>
       {/*Products on rent  */}
       <div>
@@ -102,7 +113,10 @@ const MyProducts = () => {
         ) : (
           <div className="p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-5">
             {myProductsOnRent.map((product) => (
-              <ProductCard key={product.BuyingID} props={product}></ProductCard>
+              <RentedProductCard
+                key={product.BuyingID}
+                props={product}
+              ></RentedProductCard>
             ))}
           </div>
         )}

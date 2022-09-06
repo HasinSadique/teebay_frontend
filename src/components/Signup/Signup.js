@@ -16,6 +16,8 @@ const Signup = () => {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const [response, setResponse] = useState("");
   //   Eye Icon passwords
   const [showingPass, setShowingPass] = useState(false);
@@ -65,14 +67,16 @@ const Signup = () => {
 
       fetch("http://localhost:3302/signup", requestOptions)
         .then((res) => res.json())
-        .then((data) => setResponse(data));
-      if (response.success == true) {
-        alert("User Signup completed");
-        // Change UI to signin page
-        navigate(from, { replace: true });
-      } else {
-        alert("Kuch to Garbar hain.", response);
-      }
+        .then((data) => {
+          console.log(data);
+          if (data.success) {
+            alert("User Signup completed");
+            // Change UI to signin page
+            navigate(from, { replace: true });
+          } else {
+            setErrorMsg(data.msg.detail);
+          }
+        });
     } else {
       alert("Please enter the details correctly.");
     }
@@ -101,9 +105,9 @@ const Signup = () => {
   };
 
   return (
-    <div className=" grid grid-cols-1 items-center h-screen">
+    <div className=" grid grid-cols-1 items-center pt-5">
       <div>
-        <h1 className="text-2xl mb-8 font-semibold">SIGN UP</h1>
+        <h1 className="text-2xl mb-5 font-semibold">SIGN UP</h1>
         <form
           onSubmit={handleRegisterBtn}
           className="lg:mx-auto mx-14 p-14 border-2 lg:w-1/2"
@@ -223,6 +227,7 @@ const Signup = () => {
             type="submit"
             value="Register"
           />
+          <h1 className="text-error mt-3 ">{errorMsg}</h1>
           <h1 className="mt-7">
             Already have an account?
             <span className="text-red-700 font-semibold ml-2">

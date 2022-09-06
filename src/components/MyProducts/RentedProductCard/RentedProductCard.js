@@ -12,12 +12,12 @@ const RentedProductCard = (props) => {
       .then((data) => setProductInfo(data[0]));
   }, []);
   return (
-    <div className="p-5">
+    <div className="p-5 hover:scale-105 ease-in-out duration-300">
       <div className="card bg-base-100 shadow-2xl">
         <div className=" card-body p-5 text-left">
           <div className="flex justify-between items-center">
             <h1 className="card-title text-left"> {productInfo.Title}</h1>
-            <h1 className=" text-xs text-sm">Product ID: {PID}</h1>
+            <h1 className=" text-xs text-sm">PID: {PID}</h1>
           </div>
           <small className="text-xs">Owner ID: {OwnerID}</small>
           <small className="font-semi text-sm">
@@ -29,7 +29,9 @@ const RentedProductCard = (props) => {
           <h4 className=" text-text-center items-center font-semibold">
             From: {From}
           </h4>
-          <h4>To: {To}</h4>
+          <h4 className=" text-text-center items-center font-semibold">
+            To: {To}
+          </h4>
         </div>
       </div>
     </div>

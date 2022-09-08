@@ -13,7 +13,7 @@ const RentedParts = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
       {/*Products on rent  */}
       <div>
         <h1 className=" text-2xl text-black font-bold">

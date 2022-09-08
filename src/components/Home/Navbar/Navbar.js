@@ -18,7 +18,7 @@ const Navbar = () => {
     //     Logout
     //   </button>
     // </div>
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 shadow-2xl">
       <div class="navbar-start">
         {location.pathname != "/" ? (
           <div class="dropdown">
@@ -43,11 +43,18 @@ const Navbar = () => {
               class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a href="/home">Home</a>
+                <a className="hover:bg-red-700 hover:text-white" href="/home">
+                  Home
+                </a>
               </li>
 
               <li tabindex="0">
-                <a href={`/my-products`}>My products</a>
+                <a
+                  className="hover:bg-red-700 hover:text-white"
+                  href={`/my-products`}
+                >
+                  My products
+                </a>
               </li>
             </ul>
           </div>
@@ -67,22 +74,17 @@ const Navbar = () => {
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
               <li>
-                <a href="/home">Home</a>
+                <a className="hover:bg-red-700 hover:text-white" href="/home">
+                  Home
+                </a>
               </li>
-              {/* <li>
-                <a href="/add-product">Add product</a>
-              </li> */}
-              <li
-                onClick={() => {
-                  if (localStorage.getItem("user") != null) {
-                    navigate("/my-products");
-                  } else {
-                    navigate(`/`);
-                  }
-                }}
-                tabindex="0"
-              >
-                <a>My products</a>
+              <li>
+                <a
+                  href="/my-products"
+                  className="hover:bg-red-700 hover:text-white"
+                >
+                  My products
+                </a>
               </li>
             </ul>
           </div>

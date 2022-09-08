@@ -15,7 +15,7 @@ const AddedProducts = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
       <div className="w-full">
         <h1 className=" w-full text-2xl text-black font-bold">
           My added products: ({myAddedProducts.length})

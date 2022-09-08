@@ -40,7 +40,7 @@ const ProductCard = (props) => {
   return (
     <div>
       {!BuyingID ? (
-        <div class=" hover:scale-105 ease-in-out duration-300 mx-auto my-10 card lg:w-1/2 w-3/4 bg-base-100 shadow-2xl">
+        <div class="py-5 hover:scale-105 ease-in-out duration-300 mx-auto my-10 card lg:w-1/2 w-3/4 bg-base-100 shadow-2xl">
           <div class="card-body ">
             <div className="flex justify-between items-center ">
               <h2 class=" card-title text-left">{Title}</h2>
@@ -81,7 +81,7 @@ const ProductCard = (props) => {
           </div>
         </div>
       ) : (
-        <div className="hover:scale-105 ease-in-out duration-300 card w-3/4 mx-auto bg-base-50 shadow-2xl">
+        <div className=" hover:scale-105 ease-in-out duration-300 card w-3/4 mx-auto bg-base-50 shadow-2xl">
           <div class="card-body">
             <div className="flex justify-between items-center">
               <h2 class="card-title text-left ">{ProductTitle}</h2>

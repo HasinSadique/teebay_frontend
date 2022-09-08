@@ -13,7 +13,7 @@ const BoughtParts = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
       {/*For Bought Products  */}
       <div>
         <h1 className="text-2xl text-black font-bold">

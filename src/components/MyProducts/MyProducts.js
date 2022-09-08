@@ -58,22 +58,47 @@ const MyProducts = () => {
 
         <div class="drawer-side">
           <label for="my-drawer-2" class="drawer-overlay"></label>
-          <ul class="menu p-4 border-r-2 border-t-2 rounded-tr-2xl border-red-500 overflow-y-auto w-56 bg-white text-base-content">
+          <ul class="bg-red-800 text-white menu p-4 border-r-2 border-t-2 rounded-tr-2xl border-red-500 overflow-y-auto w-56 ">
             {/* <!-- Sidebar content here --> */}
             <li>
-              <a href="/my-products/added-products">Added products</a>
+              <a
+                className="hover:bg-white hover:text-black"
+                href="/my-products/added-products"
+              >
+                Added products
+              </a>
             </li>
             <li>
-              <a href="/my-products/sold-products">Sold products</a>
+              <a
+                className="hover:bg-white hover:text-black"
+                href="/my-products/sold-products"
+              >
+                Sold products
+              </a>
             </li>
             <li>
-              <a href="/my-products/bought-products">Bought products</a>
+              <a
+                className="hover:bg-white hover:text-black"
+                href="/my-products/bought-products"
+              >
+                Bought products
+              </a>
             </li>
             <li>
-              <a href="/my-products/rented-products">Products on rents</a>
+              <a
+                className="hover:bg-white hover:text-black"
+                href="/my-products/rented-products"
+              >
+                Products on rents
+              </a>
             </li>
             <li>
-              <a href="/my-products/borrowed-products">Bought Products</a>
+              <a
+                className="hover:bg-white hover:text-black"
+                href="/my-products/borrowed-products"
+              >
+                Bought Products
+              </a>
             </li>
           </ul>
         </div>

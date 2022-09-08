@@ -20,7 +20,7 @@ Below are few screen shots of the Web application.
 
 <img width="1440" alt="Screenshot 2022-09-06 at 8 08 47 PM" src="https://user-images.githubusercontent.com/48351876/188657800-866299a0-7f1b-4c7f-8360-2808c75ff4d8.png">
 
-![Screenshot 2022-09-08 at 10 09 21 PM (2)](https://user-images.githubusercontent.com/48351876/189172168-ccbc232d-a692-4a3c-b6b3-9092b94716ab.png)
+![Screenshot 2022-09-08 at 10 45 21 PM (2)](https://user-images.githubusercontent.com/48351876/189179297-e7339f77-2ae1-4256-b9de-1f9f508a64a0.png)
 
 
 <img width="1440" alt="Screenshot 2022-09-06 at 8 11 39 PM" src="https://user-images.githubusercontent.com/48351876/188657558-84d9b02b-e1bc-4094-856b-c3d7e460c56d.png">

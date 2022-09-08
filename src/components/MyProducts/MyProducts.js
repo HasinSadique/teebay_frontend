@@ -29,11 +29,11 @@ const MyProducts = () => {
           {/* <!-- Page content here --> */}
           <label
             for="my-drawer-2"
-            className="border-r-2 bg-red-800 flex pt-3 bg-base-100 lg:hidden"
+            className="border-r-2 bg-red-800 flex pt-3 px-2 bg-base-100 lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className=" h-6 w-6 "
+              className=" h-10 w-10 rounded-full border-2 border-white p-2 hover:scale-110 duration-200 ease-in-out"
               fill="none"
               viewBox="0 0 24 24"
               stroke="White"
@@ -97,7 +97,7 @@ const MyProducts = () => {
                 className="hover:bg-white hover:text-black"
                 href="/my-products/borrowed-products"
               >
-                Bought Products
+                Borrowed Products
               </a>
             </li>
           </ul>

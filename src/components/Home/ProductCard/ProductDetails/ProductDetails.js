@@ -89,9 +89,9 @@ const ProductDetails = () => {
   console.log("From Date: ", toDate);
 
   return (
-    <div>
+    <div className="">
       <h1 className="text-2xl font-bold font-mono mt-10">Product Details</h1>
-      <div className="p-10 mt-10 rounded-xl shadow-2xl border-2 w-3/4 mx-auto text-left grid grid-cols-1">
+      <div className="p-10 mt-10 mb-20 rounded-xl shadow-2xl border-2 w-3/4 mx-auto text-left grid grid-cols-1">
         <div className="flex justify-between items-center mb-3">
           <h1 className="card-title text-2xl mb-3">{details.Title}</h1>
           <small>Product ID: {details.PID}</small>

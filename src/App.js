@@ -10,6 +10,11 @@ import EditProduct from "./components/EditProduct/EditProduct";
 import ProductDetails from "./components/Home/ProductCard/ProductDetails/ProductDetails";
 import MyProducts from "./components/MyProducts/MyProducts";
 import { useState } from "react";
+import SoldParts from "./components/MyProducts/SoldParts/SoldParts";
+import BoughtParts from "./components/MyProducts/BoughtParts/BoughtParts";
+import BorrowedParts from "./components/MyProducts/BorrowedParts/BorrowedParts";
+import RentedParts from "./components/MyProducts/RentedParts/RentedParts";
+import AddedProducts from "./components/MyProducts/AddedProducts/AddedProducts";
 
 function App() {
   // const [currentUser, setCurrentUser] = useState("");
@@ -27,7 +32,28 @@ function App() {
           path="/add-product/:pid"
           element={<AddProduct></AddProduct>}
         ></Route>
-        <Route path="/my-products" element={<MyProducts></MyProducts>}></Route>
+        {/* <Route path="/my-products" element={<MyProducts></MyProducts>}></Route> */}
+
+        <Route path="/my-products" element={<MyProducts></MyProducts>}>
+          <Route
+            path="added-products"
+            element={<AddedProducts></AddedProducts>}
+          ></Route>
+          <Route path="sold-products" element={<SoldParts></SoldParts>}></Route>
+          <Route
+            path="bought-products"
+            element={<BoughtParts></BoughtParts>}
+          ></Route>
+          <Route
+            path="rented-products"
+            element={<RentedParts></RentedParts>}
+          ></Route>
+          <Route
+            path="borrowed-products"
+            element={<BorrowedParts></BorrowedParts>}
+          ></Route>
+        </Route>
+
         <Route
           path="/product-details/:pid"
           element={<ProductDetails></ProductDetails>}

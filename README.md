@@ -1,5 +1,5 @@
 # TeeBay
-A product renting/buying platform. Here users can add their products/items for sell or for rent and others can buy or lend those products using this application.
+A product renting/buying and selling platform. Here users can add their products/items for sell or for rent and others can buy or lend those products using this application.
 
 This application's frontend is designed using [ReactJS](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Daisy UI](https://daisyui.com/), [React Forms](https://reactjs.org/docs/forms.html) and the backend is created using [NodeJS](https://nodejs.dev/en/), [ExpressJs](https://expressjs.com/). Connected with [postgresql](https://www.postgresql.org/) Database.
 

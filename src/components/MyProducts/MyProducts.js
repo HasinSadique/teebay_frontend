@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import ProductCard from "../Home/ProductCard/ProductCard";
 import RentedProductCard from "./RentedProductCard/RentedProductCard";
 import { Link, Outlet } from "react-router-dom";
+import AddedProducts from "./AddedProducts/AddedProducts";
 
 const MyProducts = () => {
   const [myAddedProducts, setMyAddedProducts] = useState([]);
@@ -47,28 +48,7 @@ const MyProducts = () => {
           </label>
 
           {window.location.pathname.endsWith("/my-products") ? (
-            <div className="w-full">
-              <h1 className=" w-full text-2xl text-black font-bold">
-                My added products: ({myAddedProducts.length})
-              </h1>
-              {myAddedProducts.length == 0 ? (
-                <h1 className="mt-5">You did not add any new products.</h1>
-              ) : (
-                <div>
-                  {myAddedProducts.map((product) => (
-                    <div>
-                      <ProductCard
-                        key={product.PID}
-                        props={product}
-                      ></ProductCard>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <a className="btn normal-case my-10" href="/add-product">
-                Add a product
-              </a>
-            </div>
+            <AddedProducts></AddedProducts>
           ) : (
             <></>
           )}
